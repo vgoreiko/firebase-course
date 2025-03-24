@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
@@ -18,7 +18,7 @@ export class CreateUserComponent {
     });
 
   constructor(
-      private fb: FormBuilder,
+      private fb: UntypedFormBuilder,
       private http: HttpClient) {
 
   }
