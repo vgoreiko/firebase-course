@@ -35,6 +35,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -71,5 +72,5 @@ import { MatNativeDateModule } from '@angular/material/core';
         ReactiveFormsModule,
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireStorageModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        AngularFireStorageModule], providers: [provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()] })
 export class AppModule { }
