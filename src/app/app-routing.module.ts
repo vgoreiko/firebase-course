@@ -1,39 +1,39 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {AboutComponent} from './about/about.component';
-import {CourseComponent} from './course/course.component';
-import {LoginComponent} from './login/login.component';
-import {CreateCourseComponent} from './create-course/create-course.component';
+
+
+
+
+
 // import {AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
-import {CreateUserComponent} from './create-user/create-user.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
   },
   {
     path: 'create-course',
-    component: CreateCourseComponent
+    loadComponent: () => import('./create-course/create-course.component').then(m => m.CreateCourseComponent)
 
   },
   {
     path: 'create-user',
-    component: CreateUserComponent
+    loadComponent: () => import('./create-user/create-user.component').then(m => m.CreateUserComponent)
 
   },
   {
     path: 'about',
-    component: AboutComponent
+    loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
   },
   {
     path: 'login',
-    component: LoginComponent
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
   },
   {
     path: 'courses/:courseUrl',
-    component: CourseComponent
+    loadComponent: () => import('./course/course.component').then(m => m.CourseComponent)
   },
   {
     path: '**',
