@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import 'firebase/firestore';
 
 import {COURSES, findLessonsForCourse} from './db-data';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import { MatButton } from '@angular/material/button';
-import {Course} from '../models';
+import {Course} from '../model';
 
 @Component({
     selector: 'app-about',
@@ -15,8 +15,13 @@ import {Course} from '../models';
     imports: [MatButton]
 })
 export class AboutComponent {
+    private db = inject(AngularFirestore);
 
-    constructor(private db: AngularFirestore) {
+    /** Inserted by Angular inject() migration for backwards compatibility */
+    constructor(...args: unknown[]);
+
+
+    constructor() {
     }
 
     async uploadData(): Promise<void> {

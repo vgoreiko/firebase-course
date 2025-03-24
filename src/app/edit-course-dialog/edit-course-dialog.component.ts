@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { Course } from '../model/course';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -16,14 +16,19 @@ import { MatButton } from '@angular/material/button';
     imports: [MatDialogTitle, CdkScrollable, MatDialogContent, MatFormField, MatInput, MatSlideToggle, MatDialogActions, MatButton]
 })
 export class EditCourseDialogComponent implements OnInit {
+    private fb = inject(FormBuilder);
+    private dialogRef = inject<MatDialogRef<EditCourseDialogComponent>>(MatDialogRef);
+
 
     form: FormGroup;
     description: string;
 
-    constructor(
-        private fb: FormBuilder,
-        private dialogRef: MatDialogRef<EditCourseDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) { description, longDescription }: Course) {
+    /** Inserted by Angular inject() migration for backwards compatibility */
+    constructor(...args: unknown[]);
+
+    constructor() {
+        const fb = this.fb;
+
 
         this.description = description;
 

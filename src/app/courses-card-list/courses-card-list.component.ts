@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Course } from '../model/course';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditCourseDialogComponent } from '../edit-course-dialog/edit-course-dialog.component';
@@ -16,6 +16,9 @@ import { MatIcon } from '@angular/material/icon';
     imports: [NgFor, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardActions, MatButton, RouterLink, MatMiniFabButton, MatIcon]
 })
 export class CoursesCardListComponent implements OnInit {
+    private dialog = inject(MatDialog);
+    private router = inject(Router);
+
 
     @Input()
     courses: Course[];
@@ -26,9 +29,10 @@ export class CoursesCardListComponent implements OnInit {
     @Output()
     courseDeleted = new EventEmitter<Course>();
 
-    constructor(
-        private dialog: MatDialog,
-        private router: Router) {
+    /** Inserted by Angular inject() migration for backwards compatibility */
+    constructor(...args: unknown[]);
+
+    constructor() {
     }
 
     ngOnInit(): void {

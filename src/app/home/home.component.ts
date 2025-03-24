@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {Course} from '../model/course';
 import {Observable, of} from 'rxjs';
 // import {catchError, map} from 'rxjs/operators';
@@ -17,6 +17,8 @@ import { MatTabGroup, MatTab } from '@angular/material/tabs';
     imports: [MatMiniFabButton, MatIcon, MatTabGroup, MatTab]
 })
 export class HomeComponent implements OnInit {
+    private router = inject(Router);
+
 
     courses$: Observable<Course[]>;
 
@@ -24,8 +26,10 @@ export class HomeComponent implements OnInit {
 
     advancedCourses$: Observable<Course[]>;
 
-    constructor(
-      private router: Router) {
+    /** Inserted by Angular inject() migration for backwards compatibility */
+    constructor(...args: unknown[]);
+
+    constructor() {
 
     }
 

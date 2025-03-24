@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UntypedFormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
@@ -16,6 +16,9 @@ import { MatButton } from '@angular/material/button';
     imports: [ReactiveFormsModule, MatFormField, MatInput, MatSlideToggle, MatButton]
 })
 export class CreateUserComponent {
+    private fb = inject(UntypedFormBuilder);
+    private http = inject(HttpClient);
+
 
     form = this.fb.group({
         email: ['', [Validators.email, Validators.required]],
@@ -23,9 +26,10 @@ export class CreateUserComponent {
         admin: [false]
     });
 
-  constructor(
-      private fb: UntypedFormBuilder,
-      private http: HttpClient) {
+    /** Inserted by Angular inject() migration for backwards compatibility */
+    constructor(...args: unknown[]);
+
+  constructor() {
 
   }
 
