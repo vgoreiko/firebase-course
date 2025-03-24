@@ -3,9 +3,9 @@ import {Component} from '@angular/core';
 import 'firebase/firestore';
 
 import {COURSES, findLessonsForCourse} from './db-data';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import { MatButton } from '@angular/material/button';
-
+import {Course} from '../models';
 
 @Component({
     selector: 'app-about',
@@ -20,8 +20,9 @@ export class AboutComponent {
     }
 
     async uploadData(): Promise<void> {
-        const coursesCollection = this.db.collection('courses');
+        const coursesCollection: AngularFirestoreCollection<Course> = this.db.collection('courses');
         const courses = await this.db.collection('courses').get();
+        console.log(courses);
         for (const course of Object.values(COURSES)) {
             const newCourse = this.removeId(course);
             const courseRef = await coursesCollection.add(newCourse);
