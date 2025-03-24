@@ -2,12 +2,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Course } from '../model/course';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditCourseDialogComponent } from '../edit-course-dialog/edit-course-dialog.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardActions } from '@angular/material/card';
+import { MatButton, MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'courses-card-list',
     templateUrl: './courses-card-list.component.html',
-    styleUrls: ['./courses-card-list.component.css']
+    styleUrls: ['./courses-card-list.component.css'],
+    standalone: true,
+    imports: [NgFor, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardActions, MatButton, RouterLink, MatMiniFabButton, MatIcon]
 })
 export class CoursesCardListComponent implements OnInit {
 

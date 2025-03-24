@@ -1,13 +1,19 @@
 import {Component} from '@angular/core';
-import {UntypedFormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import { MatFormField } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'create-user',
-  templateUrl: 'create-user.component.html',
-  styleUrls: ['create-user.component.css']
+    selector: 'create-user',
+    templateUrl: 'create-user.component.html',
+    styleUrls: ['create-user.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule, MatFormField, MatInput, MatSlideToggle, MatButton]
 })
 export class CreateUserComponent {
 

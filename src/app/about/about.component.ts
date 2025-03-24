@@ -4,12 +4,15 @@ import 'firebase/firestore';
 
 import {COURSES, findLessonsForCourse} from './db-data';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css']
+    styleUrls: ['./about.component.css'],
+    standalone: true,
+    imports: [MatButton]
 })
 export class AboutComponent {
 

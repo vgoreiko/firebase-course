@@ -10,7 +10,8 @@ import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
+    standalone: true
 })
 export class LoginComponent implements OnInit, OnDestroy {
 

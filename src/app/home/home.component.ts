@@ -4,12 +4,17 @@ import {Observable, of} from 'rxjs';
 // import {catchError, map} from 'rxjs/operators';
 // import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
 
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
+    standalone: true,
+    imports: [MatMiniFabButton, MatIcon, MatTabGroup, MatTab]
 })
 export class HomeComponent implements OnInit {
 
