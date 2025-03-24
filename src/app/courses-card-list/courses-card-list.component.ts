@@ -1,10 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Course} from "../model/course";
-import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from "@angular/material/legacy-dialog";
-import {EditCourseDialogComponent} from "../edit-course-dialog/edit-course-dialog.component";
-import {catchError, tap} from 'rxjs/operators';
-import {throwError} from 'rxjs';
-import {Router} from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Course } from '../model/course';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditCourseDialogComponent } from '../edit-course-dialog/edit-course-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'courses-card-list',
@@ -17,27 +15,26 @@ export class CoursesCardListComponent implements OnInit {
     courses: Course[];
 
     @Output()
-    courseEdited = new EventEmitter();
+    courseEdited = new EventEmitter<void>();
 
     @Output()
     courseDeleted = new EventEmitter<Course>();
 
     constructor(
-      private dialog: MatDialog,
-      private router: Router) {
+        private dialog: MatDialog,
+        private router: Router) {
     }
 
-    ngOnInit() {
-
+    ngOnInit(): void {
     }
 
-    editCourse(course:Course) {
+    editCourse(course: Course): void {
 
         const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
-        dialogConfig.minWidth = "400px";
+        dialogConfig.minWidth = '400px';
 
         dialogConfig.data = course;
 
@@ -52,12 +49,3 @@ export class CoursesCardListComponent implements OnInit {
     }
 
 }
-
-
-
-
-
-
-
-
-

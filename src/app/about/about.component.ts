@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 
 import 'firebase/firestore';
 
-import {AngularFirestore} from '@angular/fire/firestore';
 import {COURSES, findLessonsForCourse} from './db-data';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 
 @Component({

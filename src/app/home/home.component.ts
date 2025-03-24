@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from '../model/course';
 import {Observable, of} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
-import {AngularFirestore} from '@angular/fire/firestore';
+// import {catchError, map} from 'rxjs/operators';
+// import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 
 
