@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-
+import {Component} from '@angular/core';
 
 import 'firebase/firestore';
 
@@ -8,7 +7,7 @@ import {COURSES, findLessonsForCourse} from './db-data';
 
 
 @Component({
-    selector: 'about',
+    selector: 'app-about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.css']
 })
@@ -17,10 +16,10 @@ export class AboutComponent {
     constructor(private db: AngularFirestore) {
     }
 
-    async uploadData() {
+    async uploadData(): Promise<void> {
         const coursesCollection = this.db.collection('courses');
         const courses = await this.db.collection('courses').get();
-        for (let course of Object.values(COURSES)) {
+        for (const course of Object.values(COURSES)) {
             const newCourse = this.removeId(course);
             const courseRef = await coursesCollection.add(newCourse);
             const lessons = await courseRef.collection('lessons');
@@ -34,13 +33,16 @@ export class AboutComponent {
         }
     }
 
-    removeId(data: any) {
+    removeId(data: any): any {
         const newData: any = {...data};
         delete newData.id;
         return newData;
     }
 
 
+    readDocument($event: MouseEvent) {
+
+    }
 }
 
 
