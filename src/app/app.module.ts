@@ -33,50 +33,43 @@ import { CourseComponent } from './course/course.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutComponent,
-    CourseComponent,
-    CoursesCardListComponent,
-    EditCourseDialogComponent,
-    LoginComponent,
-    CreateCourseComponent,
-    CreateUserComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
-    MatTabsModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    MatListModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        AboutComponent,
+        CourseComponent,
+        CoursesCardListComponent,
+        EditCourseDialogComponent,
+        LoginComponent,
+        CreateCourseComponent,
+        CreateUserComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCardModule,
+        MatTabsModule,
+        MatSidenavModule,
+        MatSlideToggleModule,
+        MatListModule,
+        MatToolbarModule,
+        MatInputModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireStorageModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
