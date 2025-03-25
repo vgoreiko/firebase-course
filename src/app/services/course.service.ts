@@ -10,6 +10,7 @@ export class CourseService {
     private db = inject(AngularFirestore);
 
     getCoursesByCategory(category: string): Observable<Course[]> {
-        return this.db.collection<Course>('courses', ref => ref.where('categories', 'array-contains', category)).valueChanges();
+        return this.db
+            .collection<Course>('courses', ref => ref.where('categories', 'array-contains', category)).valueChanges();
     }
 }

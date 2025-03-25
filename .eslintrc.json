@@ -1,7 +1,9 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
-  "maxLength": 120,
+  "rules": {
+    "max-len": ["error", { "code": 120 }]
+  },
   "overrides": [
     {
       "files": ["*.ts"],
