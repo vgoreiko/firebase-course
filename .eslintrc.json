@@ -1,9 +1,6 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
-  "rules": {
-    "max-len": ["error", { "code": 120 }]
-  },
   "overrides": [
     {
       "files": ["*.ts"],
@@ -17,7 +14,7 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
-        // Add your custom rules here
+        "max-len": ["error", { "code": 120 }]
       }
     },
     {
