@@ -17,13 +17,6 @@ import {Course} from '../model';
 export class AboutComponent {
     private db = inject(AngularFirestore);
 
-    /** Inserted by Angular inject() migration for backwards compatibility */
-    constructor(...args: unknown[]);
-
-
-    constructor() {
-    }
-
     async uploadData(): Promise<void> {
         const coursesCollection: AngularFirestoreCollection<Course> = this.db.collection('courses');
         const courses = await this.db.collection('courses').get();

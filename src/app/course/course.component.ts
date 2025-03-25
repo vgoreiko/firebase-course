@@ -15,18 +15,8 @@ import { MatButton } from '@angular/material/button';
 })
 export class CourseComponent implements OnInit {
   private route = inject(ActivatedRoute);
-
-
   loading = false;
-
   displayedColumns = ['seqNo', 'description', 'duration'];
-
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-  constructor() {
-
-  }
 
   ngOnInit() {
 
