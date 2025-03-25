@@ -1,12 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { Course } from '../model/course';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { EditCourseDialogComponent } from '../edit-course-dialog/edit-course-dialog.component';
-import { Router, RouterLink } from '@angular/router';
-import { NgFor } from '@angular/common';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardActions } from '@angular/material/card';
-import { MatButton, MatMiniFabButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import {Component, EventEmitter, Input, OnInit, Output, inject} from '@angular/core';
+import {Course} from '../model/course';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
+import {Router, RouterLink} from '@angular/router';
+import {NgFor} from '@angular/common';
+import {
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardImage,
+    MatCardContent,
+    MatCardActions
+} from '@angular/material/card';
+import {MatButton, MatMiniFabButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
     selector: 'courses-card-list',

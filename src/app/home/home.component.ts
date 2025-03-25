@@ -8,6 +8,7 @@ import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {AsyncPipe, NgForOf} from '@angular/common';
 import {CourseService} from '../services';
+import {CoursesCardListComponent} from '../courses-card-list/courses-card-list.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {CourseService} from '../services';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
     standalone: true,
-    imports: [MatMiniFabButton, MatIcon, MatTabGroup, MatTab, AsyncPipe, NgForOf]
+    imports: [MatMiniFabButton, MatIcon, MatTabGroup, MatTab, AsyncPipe, NgForOf, CoursesCardListComponent]
 })
 export class HomeComponent implements OnInit {
     private router = inject(Router);
