@@ -14,7 +14,13 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
-        "max-len": ["error", { "code": 120 }]
+        "max-len": ["error", { "code": 120 }],
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ]
       }
     },
     {
