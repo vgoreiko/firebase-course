@@ -1,6 +1,13 @@
 import { inject, Injectable } from "@angular/core";
 import { Course } from "../model";
-import {collection, Firestore, query, where, getDocs} from '@angular/fire/firestore';
+import {
+  collection,
+  Firestore,
+  query,
+  where,
+  collectionData,
+} from "@angular/fire/firestore";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -8,15 +15,9 @@ import {collection, Firestore, query, where, getDocs} from '@angular/fire/firest
 export class CourseService {
   private db = inject(Firestore);
 
-  async getCoursesByCategory(category: string): Promise<Course[]> {
+  getCoursesByCategory(category: string): Observable<Course[]> {
     const coursesCollection = collection(this.db, "courses");
-    const coursesQuery = query(coursesCollection, where('category', '==', category));
-    const result = await getDocs(coursesQuery);
-    return result.docs.map(doc => {
-        const data = doc.data() as Course;
-        return {
-            ...data,
-        };
-    });
+    const q = query(coursesCollection, where("category", "==", category));
+    return collectionData(q) as Observable<Course[]>;
   }
 }

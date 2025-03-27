@@ -1,10 +1,14 @@
 import { Component, inject } from "@angular/core";
-// import {Firestore, collection, collectionData, addDoc} from '@angular/fire/firestore';
-import { Firestore } from "@angular/fire/firestore";
-// import {COURSES, findLessonsForCourse} from './db-data';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  addDoc,
+} from "@angular/fire/firestore";
+import { COURSES } from "./db-data";
 import { MatButton } from "@angular/material/button";
-// import {Course} from '../model';
-// import {firstValueFrom, Observable} from 'rxjs';
+import { Course } from "../model";
+import { firstValueFrom, Observable } from "rxjs";
 
 @Component({
   selector: "app-about",
@@ -18,22 +22,22 @@ export class AboutComponent {
 
   // TODO: Implement uploadData method
   async uploadData(): Promise<void> {
-    //     const coursesCollection = collection(this.db, 'courses');
-    //     const courses  = firstValueFrom(collectionData(coursesCollection) as Observable<Course[]>);
-    //     console.log(courses);
-    //     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    //     for (const course of Object.values(COURSES)) {
-    //         const newCourse = this.removeId(course as Course);
-    //         const courseRef = addDoc(coursesCollection, newCourse);
-    //         // const lessons = await courseRef.collection('lessons');
-    //         const courseLessons = findLessonsForCourse(course['id']);
-    //         console.log(`Uploading course ${course['description']}`);
-    //         for (const lesson of courseLessons) {
-    //             const newLesson = this.removeId(lesson);
-    //             delete newLesson.courseId;
-    //             await lessons.add(newLesson);
-    //         }
-    //     }
+    const coursesCollection = collection(this.db, "courses");
+    const courses = firstValueFrom(
+      collectionData(coursesCollection) as Observable<Course[]>,
+    );
+    console.log(courses);
+    for (const course of Object.values(COURSES)) {
+      const newCourse = this.removeId(course);
+      await addDoc(coursesCollection, newCourse);
+      // const courseLessons = findLessonsForCourse(course["id"]);
+      // console.log(`Uploading course ${course["description"]}`);
+      // for (const lesson of courseLessons) {
+      //   const newLesson = this.removeId(lesson);
+      //   delete newLesson.courseId;
+      //   await lessons.add(newLesson);
+      // }
+    }
   }
 
   removeId<T extends { id: string | number }>(data: T): Omit<T, "id"> {

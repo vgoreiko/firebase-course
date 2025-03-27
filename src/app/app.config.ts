@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideFirestore(() => {
             const fireStore = getFirestore();
-            if(!environment.production) {
+            if(environment.useEmulators) {
                 connectFirestoreEmulator(fireStore, 'localhost', 8080);
                 return getFirestore();
             }
@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
         }),
         provideStorage(() => {
             const storage = getStorage();
-            if (!environment.production) {
+            if (environment.useEmulators) {
                 connectStorageEmulator(storage, 'localhost', 9199);
                 return storage;
             }
@@ -38,14 +38,14 @@ export const appConfig: ApplicationConfig = {
         }),
         provideAuth(() => {
             const auth = getAuth();
-            if (!environment.production) {
+            if (environment.useEmulators) {
                 connectAuthEmulator(auth, 'http://localhost:9099');
             }
             return auth;
         }),
         provideFunctions(() => {
             const functions = getFunctions();
-            if (!environment.production) {
+            if (environment.useEmulators) {
                 connectFunctionsEmulator(functions, 'localhost', 5001);
             }
             return functions;

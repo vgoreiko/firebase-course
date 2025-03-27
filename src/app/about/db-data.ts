@@ -1,4 +1,32 @@
-export const COURSES = {
+export interface Course {
+  id: number;
+  description: string;
+  longDescription: string;
+  iconUrl: string;
+  lessonsCount: number;
+  categories: string[];
+  seqNo: number;
+  url: string;
+  courseListIcon?: string;
+  promo?: boolean;
+  price?: number;
+}
+export interface Lesson {
+  id: number;
+  description: string;
+  duration: string;
+  seqNo: number;
+  courseId: number;
+  videoId?: string;
+}
+export interface User {
+  id: number;
+  email: string;
+  password: string;
+  pictureUrl: string;
+}
+
+export const COURSES: { [key: number]: Course } = {
   20: {
     id: 20,
     description: "Firebase & AngularFire In Depth",
@@ -243,7 +271,7 @@ export const COURSES = {
   },
 };
 
-export const LESSONS = {
+export const LESSONS: { [key: number]: Lesson } = {
   1: {
     id: 1,
     description:
@@ -1121,7 +1149,7 @@ export const LESSONS = {
   },
 };
 
-export const USERS = {
+export const USERS: { [key: number]: User } = {
   1: {
     id: 1,
     email: "test@angular-university.io",
@@ -1140,7 +1168,7 @@ export function findLessonsForCourse(courseId: number) {
 }
 
 export function authenticate(email: string, password: string) {
-  const user: any = Object.values(USERS).find((user) => user.email === email);
+  const user = Object.values(USERS).find((user) => user.email === email);
 
   if (user && user.password == password) {
     return user;
