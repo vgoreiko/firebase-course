@@ -1,16 +1,22 @@
-import {inject, Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {Observable} from 'rxjs';
-import {Course} from '../model';
+import { inject, Injectable } from "@angular/core";
+import { Course } from "../model";
+import {collection, Firestore, query, where, getDocs} from '@angular/fire/firestore';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root",
 })
 export class CourseService {
-    private db = inject(AngularFirestore);
+  private db = inject(Firestore);
 
-    getCoursesByCategory(category: string): Observable<Course[]> {
-        return this.db
-            .collection<Course>('courses', ref => ref.where('categories', 'array-contains', category)).valueChanges();
-    }
+  async getCoursesByCategory(category: string): Promise<Course[]> {
+    const coursesCollection = collection(this.db, "courses");
+    const coursesQuery = query(coursesCollection, where('category', '==', category));
+    const result = await getDocs(coursesQuery);
+    return result.docs.map(doc => {
+        const data = doc.data() as Course;
+        return {
+            ...data,
+        };
+    });
+  }
 }

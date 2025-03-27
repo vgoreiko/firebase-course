@@ -1,64 +1,48 @@
-import { Component, inject } from '@angular/core';
-
-import 'firebase/firestore';
-
-import {COURSES, findLessonsForCourse} from './db-data';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
-import { MatButton } from '@angular/material/button';
-import {Course} from '../model';
+import { Component, inject } from "@angular/core";
+// import {Firestore, collection, collectionData, addDoc} from '@angular/fire/firestore';
+import { Firestore } from "@angular/fire/firestore";
+// import {COURSES, findLessonsForCourse} from './db-data';
+import { MatButton } from "@angular/material/button";
+// import {Course} from '../model';
+// import {firstValueFrom, Observable} from 'rxjs';
 
 @Component({
-    selector: 'app-about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css'],
-    standalone: true,
-    imports: [MatButton]
+  selector: "app-about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.css"],
+  standalone: true,
+  imports: [MatButton],
 })
 export class AboutComponent {
-    private db = inject(AngularFirestore);
+  private db = inject(Firestore);
 
-    async uploadData(): Promise<void> {
-        const coursesCollection: AngularFirestoreCollection<Course> = this.db.collection('courses');
-        const courses = await this.db.collection('courses').get();
-        console.log(courses);
-        for (const course of Object.values(COURSES)) {
-            const newCourse = this.removeId(course);
-            const courseRef = await coursesCollection.add(newCourse);
-            const lessons = await courseRef.collection('lessons');
-            const courseLessons = findLessonsForCourse(course['id']);
-            console.log(`Uploading course ${course['description']}`);
-            for (const lesson of courseLessons) {
-                const newLesson = this.removeId(lesson);
-                delete newLesson.courseId;
-                await lessons.add(newLesson);
-            }
-        }
-    }
+  // TODO: Implement uploadData method
+  async uploadData(): Promise<void> {
+    //     const coursesCollection = collection(this.db, 'courses');
+    //     const courses  = firstValueFrom(collectionData(coursesCollection) as Observable<Course[]>);
+    //     console.log(courses);
+    //     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    //     for (const course of Object.values(COURSES)) {
+    //         const newCourse = this.removeId(course as Course);
+    //         const courseRef = addDoc(coursesCollection, newCourse);
+    //         // const lessons = await courseRef.collection('lessons');
+    //         const courseLessons = findLessonsForCourse(course['id']);
+    //         console.log(`Uploading course ${course['description']}`);
+    //         for (const lesson of courseLessons) {
+    //             const newLesson = this.removeId(lesson);
+    //             delete newLesson.courseId;
+    //             await lessons.add(newLesson);
+    //         }
+    //     }
+  }
 
-    removeId(data: any): any {
-        const newData: any = {...data};
-        delete newData.id;
-        return newData;
-    }
+  removeId<T extends { id: string | number }>(data: T): Omit<T, "id"> {
+    const newData = { ...data };
+    delete newData.id;
+    return newData;
+  }
 
-
-    readDocument($event: MouseEvent) {
-
-    }
+  readDocument($event: MouseEvent) {
+    console.log($event);
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
