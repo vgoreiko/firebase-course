@@ -4,8 +4,14 @@
 
 export const environment = {
   production: false,
+  useEmulators: true,
   firebase: {
-
+    apiKey: 'AIzaSyANzpAaFvsSOlaKtuvoqvJ03VCDQbH_LXk',
+    authDomain: 'fir-course-recording-8dc68.firebaseapp.com',
+    projectId: 'fir-course-recording-8dc68',
+    storageBucket: 'fir-course-recording-8dc68.firebasestorage.app',
+    messagingSenderId: '570264323903',
+    appId: '1:570264323903:web:32ecc45191163db1df358a'
   },
   api: {
 
