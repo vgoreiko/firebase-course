@@ -2,7 +2,7 @@ import { Component, inject, input, output } from "@angular/core";
 import { Course } from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { EditCourseDialogComponent } from "../edit-course-dialog/edit-course-dialog.component";
-import { Router, RouterLink } from "@angular/router";
+import { RouterLink } from "@angular/router";
 
 import {
   MatCard,
@@ -34,7 +34,6 @@ import { MatIcon } from "@angular/material/icon";
 })
 export class CoursesCardListComponent {
   private dialog = inject(MatDialog);
-  private router = inject(Router);
 
   readonly courses = input<Course[]>([]);
 
