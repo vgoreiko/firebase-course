@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { NgIf } from "@angular/common";
+
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
 import {
   MatTable,
@@ -21,20 +21,19 @@ import { MatButton } from "@angular/material/button";
     templateUrl: "./course.component.html",
     styleUrls: ["./course.component.css"],
     imports: [
-        NgIf,
-        MatProgressSpinner,
-        MatTable,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatCellDef,
-        MatCell,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        MatButton,
-    ]
+    MatProgressSpinner,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatButton
+]
 })
 export class CourseComponent {
   private route = inject(ActivatedRoute);

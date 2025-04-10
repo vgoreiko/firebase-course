@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, Output, inject } from "@angular/core";
+import { Component, inject, input, output } from "@angular/core";
 import { Course } from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { EditCourseDialogComponent } from "../edit-course-dialog/edit-course-dialog.component";
 import { Router, RouterLink } from "@angular/router";
-import { NgFor } from "@angular/common";
+
 import {
   MatCard,
   MatCardHeader,
@@ -20,31 +20,27 @@ import { MatIcon } from "@angular/material/icon";
     templateUrl: "./courses-card-list.component.html",
     styleUrls: ["./courses-card-list.component.css"],
     imports: [
-        NgFor,
-        MatCard,
-        MatCardHeader,
-        MatCardTitle,
-        MatCardImage,
-        MatCardContent,
-        MatCardActions,
-        MatButton,
-        RouterLink,
-        MatMiniFabButton,
-        MatIcon,
-    ]
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardImage,
+    MatCardContent,
+    MatCardActions,
+    MatButton,
+    RouterLink,
+    MatMiniFabButton,
+    MatIcon
+]
 })
 export class CoursesCardListComponent {
   private dialog = inject(MatDialog);
   private router = inject(Router);
 
-  @Input()
-  courses: Course[];
+  readonly courses = input<Course[]>([]);
 
-  @Output()
-  courseEdited = new EventEmitter<void>();
+  readonly courseEdited = output<void>();
 
-  @Output()
-  courseDeleted = new EventEmitter<Course>();
+  readonly courseDeleted = output<Course>();
 
   editCourse(course: Course): void {
     const dialogConfig = new MatDialogConfig();
@@ -60,6 +56,7 @@ export class CoursesCardListComponent {
       .afterClosed()
       .subscribe((val) => {
         if (val) {
+          // TODO: The 'emit' function requires a mandatory void argument
           this.courseEdited.emit();
         }
       });
