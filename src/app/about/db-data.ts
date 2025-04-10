@@ -3,7 +3,7 @@ export interface Course {
   description: string;
   longDescription: string;
   iconUrl: string;
-  lessonsCount: number;
+  lessonsCount?: number;
   categories: string[];
   seqNo: number;
   url: string;

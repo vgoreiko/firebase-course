@@ -6,7 +6,7 @@ import { MatTabGroup, MatTab } from "@angular/material/tabs";
 import { AsyncPipe } from "@angular/common";
 import { CourseService } from "../services";
 import { CoursesCardListComponent } from "../courses-card-list/courses-card-list.component";
-import {Observable} from 'rxjs';
+import { Observable } from "rxjs";
 
 @Component({
   selector: "home",
@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
   advancedCourses$: Observable<Course[]>;
 
   ngOnInit() {
-    this.beginnersCourses$ = this.coursesService.getCoursesByCategory("BEGINNER");
-    this.advancedCourses$ = this.coursesService.getCoursesByCategory("ADVANCED");
+    this.beginnersCourses$ =
+      this.coursesService.getCoursesByCategory("BEGINNER");
+    this.advancedCourses$ =
+      this.coursesService.getCoursesByCategory("ADVANCED");
   }
 }

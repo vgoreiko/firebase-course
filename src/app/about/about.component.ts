@@ -5,7 +5,7 @@ import {
   collectionData,
   addDoc,
 } from "@angular/fire/firestore";
-import { COURSES } from "./db-data";
+import { COURSES, findLessonsForCourse } from "./db-data";
 import { MatButton } from "@angular/material/button";
 import { Course } from "../model";
 import { firstValueFrom, Observable } from "rxjs";
@@ -23,20 +23,26 @@ export class AboutComponent {
   // TODO: Implement uploadData method
   async uploadData(): Promise<void> {
     const coursesCollection = collection(this.db, "courses");
-    const courses = firstValueFrom(
+    const courses = await firstValueFrom(
       collectionData(coursesCollection) as Observable<Course[]>,
     );
     console.log(courses);
     for (const course of Object.values(COURSES)) {
       const newCourse = this.removeId(course);
-      await addDoc(coursesCollection, newCourse);
-      // const courseLessons = findLessonsForCourse(course["id"]);
-      // console.log(`Uploading course ${course["description"]}`);
-      // for (const lesson of courseLessons) {
-      //   const newLesson = this.removeId(lesson);
-      //   delete newLesson.courseId;
-      //   await lessons.add(newLesson);
-      // }
+      const courseRef = await addDoc(coursesCollection, newCourse);
+      const courseLessons = findLessonsForCourse(course["id"]);
+      const lessonsCollection = collection(
+        this.db,
+        "courses",
+        courseRef.id,
+        "lessons",
+      );
+      console.log(`Uploading course ${course["description"]}`);
+      for (const lesson of courseLessons) {
+        const newLesson = this.removeId(lesson);
+        delete newLesson.courseId;
+        await addDoc(lessonsCollection, newLesson);
+      }
     }
   }
 
