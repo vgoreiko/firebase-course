@@ -9,18 +9,17 @@ import { CoursesCardListComponent } from "../courses-card-list/courses-card-list
 import { Observable } from "rxjs";
 
 @Component({
-  selector: "home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
-  standalone: true,
-  imports: [
-    MatMiniFabButton,
-    MatIcon,
-    MatTabGroup,
-    MatTab,
-    AsyncPipe,
-    CoursesCardListComponent,
-  ],
+    selector: "home",
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.css"],
+    imports: [
+        MatMiniFabButton,
+        MatIcon,
+        MatTabGroup,
+        MatTab,
+        AsyncPipe,
+        CoursesCardListComponent,
+    ]
 })
 export class HomeComponent implements OnInit {
   private coursesService = inject(CourseService);

@@ -16,23 +16,22 @@ import { MatButton, MatMiniFabButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 
 @Component({
-  selector: "courses-card-list",
-  templateUrl: "./courses-card-list.component.html",
-  styleUrls: ["./courses-card-list.component.css"],
-  standalone: true,
-  imports: [
-    NgFor,
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardImage,
-    MatCardContent,
-    MatCardActions,
-    MatButton,
-    RouterLink,
-    MatMiniFabButton,
-    MatIcon,
-  ],
+    selector: "courses-card-list",
+    templateUrl: "./courses-card-list.component.html",
+    styleUrls: ["./courses-card-list.component.css"],
+    imports: [
+        NgFor,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardImage,
+        MatCardContent,
+        MatCardActions,
+        MatButton,
+        RouterLink,
+        MatMiniFabButton,
+        MatIcon,
+    ]
 })
 export class CoursesCardListComponent {
   private dialog = inject(MatDialog);

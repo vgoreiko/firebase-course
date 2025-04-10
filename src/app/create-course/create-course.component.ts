@@ -17,24 +17,23 @@ import {
 import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "create-course",
-  templateUrl: "create-course.component.html",
-  styleUrls: ["create-course.component.css"],
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatFormField,
-    MatInput,
-    MatSelect,
-    MatOption,
-    MatSlideToggle,
-    MatLabel,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatSuffix,
-    MatDatepicker,
-    MatButton,
-  ],
+    selector: "create-course",
+    templateUrl: "create-course.component.html",
+    styleUrls: ["create-course.component.css"],
+    imports: [
+        ReactiveFormsModule,
+        MatFormField,
+        MatInput,
+        MatSelect,
+        MatOption,
+        MatSlideToggle,
+        MatLabel,
+        MatDatepickerInput,
+        MatDatepickerToggle,
+        MatSuffix,
+        MatDatepicker,
+        MatButton,
+    ]
 })
 export class CreateCourseComponent {
 }

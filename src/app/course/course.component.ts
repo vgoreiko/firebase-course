@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { NgIf } from "@angular/common";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
@@ -17,30 +17,27 @@ import {
 import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "course",
-  templateUrl: "./course.component.html",
-  styleUrls: ["./course.component.css"],
-  standalone: true,
-  imports: [
-    NgIf,
-    MatProgressSpinner,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatButton,
-  ],
+    selector: "course",
+    templateUrl: "./course.component.html",
+    styleUrls: ["./course.component.css"],
+    imports: [
+        NgIf,
+        MatProgressSpinner,
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatButton,
+    ]
 })
-export class CourseComponent implements OnInit {
+export class CourseComponent {
   private route = inject(ActivatedRoute);
   loading = false;
   displayedColumns = ["seqNo", "description", "duration"];
-
-  ngOnInit() {}
 }

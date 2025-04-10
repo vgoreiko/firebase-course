@@ -12,7 +12,6 @@ import { MatButton } from '@angular/material/button';
     selector: 'create-user',
     templateUrl: 'create-user.component.html',
     styleUrls: ['create-user.component.css'],
-    standalone: true,
     imports: [ReactiveFormsModule, MatFormField, MatInput, MatSlideToggle, MatButton]
 })
 export class CreateUserComponent {

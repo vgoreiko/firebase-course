@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import {
   MatDialogRef,
   MatDialogTitle,
@@ -12,21 +12,20 @@ import { MatSlideToggle } from "@angular/material/slide-toggle";
 import { MatButton } from "@angular/material/button";
 
 @Component({
-  selector: "edit-course-dialog",
-  templateUrl: "./edit-course-dialog.component.html",
-  styleUrls: ["./edit-course-dialog.component.css"],
-  standalone: true,
-  imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    MatFormField,
-    MatInput,
-    MatSlideToggle,
-    MatDialogActions,
-    MatButton,
-  ],
+    selector: "edit-course-dialog",
+    templateUrl: "./edit-course-dialog.component.html",
+    styleUrls: ["./edit-course-dialog.component.css"],
+    imports: [
+        MatDialogTitle,
+        MatDialogContent,
+        MatFormField,
+        MatInput,
+        MatSlideToggle,
+        MatDialogActions,
+        MatButton,
+    ]
 })
-export class EditCourseDialogComponent implements OnInit {
+export class EditCourseDialogComponent {
   private fb = inject(FormBuilder);
   private dialogRef =
     inject<MatDialogRef<EditCourseDialogComponent>>(MatDialogRef);
@@ -40,8 +39,6 @@ export class EditCourseDialogComponent implements OnInit {
       longDescription: ["", Validators.required],
     });
   }
-
-  ngOnInit(): void {}
 
   save(): void {
     this.dialogRef.close(this.form.value);

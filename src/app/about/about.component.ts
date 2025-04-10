@@ -11,11 +11,10 @@ import { Course } from "../model";
 import { firstValueFrom, Observable } from "rxjs";
 
 @Component({
-  selector: "app-about",
-  templateUrl: "./about.component.html",
-  styleUrls: ["./about.component.css"],
-  standalone: true,
-  imports: [MatButton],
+    selector: "app-about",
+    templateUrl: "./about.component.html",
+    styleUrls: ["./about.component.css"],
+    imports: [MatButton]
 })
 export class AboutComponent {
   private db = inject(Firestore);
