@@ -1,4 +1,4 @@
-import { inject, Injectable } from "@angular/core";
+import {inject, Injectable} from '@angular/core';
 import { Course } from "../model";
 import {
   collection,
@@ -7,7 +7,7 @@ import {
   where,
   collectionData,
 } from "@angular/fire/firestore";
-import { Observable } from "rxjs";
+import {Observable, tap} from 'rxjs';
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +17,11 @@ export class CourseService {
 
   getCoursesByCategory(category: string): Observable<Course[]> {
     const coursesCollection = collection(this.db, "courses");
-    const q = query(coursesCollection, where("category", "==", category));
-    return collectionData(q) as Observable<Course[]>;
+    const q = query(coursesCollection, where("categories", "array-contains", category));
+    console.log("Query:", q);
+    return collectionData(q, { idField: "id" }).pipe(
+        tap((data) => console.log("Fetched data:", data))
+    ) as Observable<Course[]>;
   }
 }
+

@@ -6,29 +6,34 @@ import { MatTabGroup, MatTab } from "@angular/material/tabs";
 import { AsyncPipe } from "@angular/common";
 import { CourseService } from "../services";
 import { CoursesCardListComponent } from "../courses-card-list/courses-card-list.component";
-import { Observable } from "rxjs";
+import { Observable, of, tap } from "rxjs";
 
 @Component({
-    selector: "home",
-    templateUrl: "./home.component.html",
-    styleUrls: ["./home.component.css"],
-    imports: [
-        MatMiniFabButton,
-        MatIcon,
-        MatTabGroup,
-        MatTab,
-        AsyncPipe,
-        CoursesCardListComponent,
-    ]
+  selector: "home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
+  imports: [
+    MatMiniFabButton,
+    MatIcon,
+    MatTabGroup,
+    MatTab,
+    AsyncPipe,
+    CoursesCardListComponent,
+  ],
 })
 export class HomeComponent implements OnInit {
   private coursesService = inject(CourseService);
-  beginnersCourses$: Observable<Course[]>;
-  advancedCourses$: Observable<Course[]>;
+  beginnersCourses$: Observable<Course[]> = of([] as Course[]);
+  advancedCourses$: Observable<Course[]> = of([] as Course[]);
 
   ngOnInit() {
-    this.beginnersCourses$ =
-      this.coursesService.getCoursesByCategory("BEGINNER");
+    this.beginnersCourses$ = this.coursesService
+      .getCoursesByCategory("BEGINNER")
+      .pipe(
+        tap((courses) => {
+          console.log('courses:', courses);
+        }),
+      );
     this.advancedCourses$ =
       this.coursesService.getCoursesByCategory("ADVANCED");
   }

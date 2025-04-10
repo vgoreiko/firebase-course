@@ -1,6 +1,7 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import { LogLevel } from "@angular/fire";
 
 export const environment = {
   production: false,
@@ -11,7 +12,8 @@ export const environment = {
     projectId: 'fir-course-recording-8dc68',
     storageBucket: 'fir-course-recording-8dc68.firebasestorage.app',
     messagingSenderId: '570264323903',
-    appId: '1:570264323903:web:32ecc45191163db1df358a'
+    appId: '1:570264323903:web:32ecc45191163db1df358a',
+    logLevel: LogLevel.VERBOSE,
   },
   api: {
 

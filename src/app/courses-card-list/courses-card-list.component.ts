@@ -36,9 +36,7 @@ export class CoursesCardListComponent {
   private dialog = inject(MatDialog);
 
   readonly courses = input<Course[]>([]);
-
   readonly courseEdited = output<void>();
-
   readonly courseDeleted = output<Course>();
 
   editCourse(course: Course): void {
