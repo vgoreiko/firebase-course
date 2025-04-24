@@ -66,4 +66,15 @@ export class CoursesCardListComponent {
       },
     });
   }
+
+  deleteCourse(course: Course): void {
+    this.courseService.deleteCourse(course).subscribe({
+      next: () => {
+        this.courseDeleted.emit(course);
+      },
+      error: (err) => {
+        console.error("Error deleting course", err);
+      },
+    });
+  }
 }

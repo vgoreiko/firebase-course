@@ -5,7 +5,7 @@ import {
   Firestore,
   query,
   where,
-  collectionData, doc, updateDoc
+  collectionData, doc, updateDoc, deleteDoc
 } from "@angular/fire/firestore";
 import { from, Observable, tap } from "rxjs";
 
@@ -28,6 +28,12 @@ export class CourseService {
     const courseDoc = doc(coursesCollection, course.id);
     console.log(courseDoc);
     return from(updateDoc(courseDoc, { ...course }));
+  }
+
+  deleteCourse(course: Course): Observable<void> {
+    const coursesCollection = collection(this.db, "courses");
+    const courseDoc = doc(coursesCollection, course.id);
+    return from(deleteDoc(courseDoc));
   }
 }
 
