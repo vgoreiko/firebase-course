@@ -1,5 +1,5 @@
 import { Component, inject, input, output } from "@angular/core";
-import { Course } from "../model/course";
+import { Course } from "../model";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { EditCourseDialogComponent } from "../edit-course-dialog/edit-course-dialog.component";
 import { RouterLink } from "@angular/router";
@@ -14,12 +14,14 @@ import {
 } from "@angular/material/card";
 import { MatButton, MatMiniFabButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
+import { CourseService } from "../services";
 
 @Component({
-    selector: "courses-card-list",
-    templateUrl: "./courses-card-list.component.html",
-    styleUrls: ["./courses-card-list.component.css"],
-    imports: [
+  selector: "courses-card-list",
+  templateUrl: "./courses-card-list.component.html",
+  styleUrls: ["./courses-card-list.component.css"],
+  standalone: true,
+  imports: [
     MatCard,
     MatCardHeader,
     MatCardTitle,
@@ -29,12 +31,12 @@ import { MatIcon } from "@angular/material/icon";
     MatButton,
     RouterLink,
     MatMiniFabButton,
-    MatIcon
-]
+    MatIcon,
+  ],
 })
 export class CoursesCardListComponent {
   private dialog = inject(MatDialog);
-
+  private courseService = inject(CourseService);
   readonly courses = input<Course[]>([]);
   readonly courseEdited = output<void>();
   readonly courseDeleted = output<Course>();
@@ -45,17 +47,23 @@ export class CoursesCardListComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.minWidth = "400px";
-
     dialogConfig.data = course;
 
     this.dialog
       .open(EditCourseDialogComponent, dialogConfig)
       .afterClosed()
-      .subscribe((val) => {
-        if (val) {
-          // TODO: The 'emit' function requires a mandatory void argument
-          this.courseEdited.emit();
-        }
-      });
+      .subscribe((val?: Course) => this.handleDialogClose(val));
+  }
+
+  private handleDialogClose(val?: Course) {
+    if (!val) return;
+    return this.courseService.updateCourse(val).subscribe({
+      next: () => {
+        this.courseEdited.emit();
+      },
+      error: (err) => {
+        console.error("Error updating course", err);
+      },
+    });
   }
 }
