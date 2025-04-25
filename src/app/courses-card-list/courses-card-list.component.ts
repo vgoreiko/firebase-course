@@ -68,7 +68,7 @@ export class CoursesCardListComponent {
   }
 
   deleteCourse(course: Course): void {
-    this.courseService.deleteCourse(course).subscribe({
+    this.courseService.deleteCourseAndLessons(course).subscribe({
       next: () => {
         this.courseDeleted.emit(course);
       },
