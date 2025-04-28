@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed, DestroyRef, effect,
-  inject, OnInit,
-  signal
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
 } from "@angular/core";
 import { Course } from "../model";
 import { MatMiniFabButton } from "@angular/material/button";
@@ -11,7 +13,7 @@ import { MatIcon } from "@angular/material/icon";
 import { MatTabGroup, MatTab, MatTabChangeEvent } from "@angular/material/tabs";
 import { CourseService, IGetCoursesByCategory } from "../services";
 import { CoursesCardListComponent } from "../courses-card-list/courses-card-list.component";
-import { map, Observable, tap } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
@@ -78,7 +80,9 @@ export class HomeComponent implements OnInit {
     this.activeTab.set(event.tab.id as Category);
   }
 
-  private getCoursesByCategory(category: Category): Observable<{data: Course[]; count: number}> {
+  private getCoursesByCategory(
+    category: Category,
+  ): Observable<{ data: Course[]; count: number }> {
     const sortOrder = "asc";
     const pageEvent =
       category === Category.BEGINNER
@@ -104,7 +108,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  private getBeginnerCourses(): Observable<{data: Course[]; count: number}> {
+  private getBeginnerCourses(): Observable<{ data: Course[]; count: number }> {
     const category = Category.BEGINNER;
     return this.getCoursesByCategory(category).pipe(
       takeUntilDestroyed(this.destroyRef),
@@ -112,11 +116,11 @@ export class HomeComponent implements OnInit {
         const page = this.beginnerPaging;
         this.beginnersCourses.set(response.data);
         return page.set({ ...page(), length: response.count });
-      })
+      }),
     );
   }
 
-  private getAdvancedCourses(): Observable<{data: Course[]; count: number}> {
+  private getAdvancedCourses(): Observable<{ data: Course[]; count: number }> {
     const category = Category.ADVANCED;
     return this.getCoursesByCategory(category).pipe(
       takeUntilDestroyed(this.destroyRef),
@@ -124,7 +128,7 @@ export class HomeComponent implements OnInit {
         const page = this.advancedPaging;
         this.advancedCourses.set(response.data);
         return page.set({ ...page(), length: response.count });
-      })
+      }),
     );
   }
 }
