@@ -5,13 +5,20 @@
             <mat-icon class="add-course-btn">add</mat-icon>
         </button>
     </div>
-    <mat-tab-group>
-        <mat-tab label="Beginners">
-            <courses-card-list [courses]="beginnersCourses$ | async"></courses-card-list>
+    <mat-tab-group (selectedTabChange)="tabChange($event)">
+        <mat-tab label="Beginners" [id]="categories.BEGINNER">
+            <courses-card-list [courses]="beginnersCourses()"></courses-card-list>
         </mat-tab>
-        <mat-tab label="Advanced">
-            <courses-card-list [courses]="advancedCourses$ | async"></courses-card-list>
+        <mat-tab label="Advanced" [id]="categories.ADVANCED">
+            <courses-card-list [courses]="advancedCourses()"></courses-card-list>
         </mat-tab>
     </mat-tab-group>
+    <mat-paginator (page)="handlePageEvent($event)"
+                   [length]="paging().length"
+                   [pageSize]="paging().pageSize"
+                   [pageSizeOptions]="pageSizeOptions()"
+                   [pageIndex]="paging().pageIndex"
+                   aria-label="Select page">
+    </mat-paginator>
 </div>
 

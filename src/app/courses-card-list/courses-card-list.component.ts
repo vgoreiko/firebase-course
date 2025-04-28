@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from "@angular/core";
+import { Component, DestroyRef, inject, input, output } from "@angular/core";
 import { Course } from "../model";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { EditCourseDialogComponent } from "../edit-course-dialog/edit-course-dialog.component";
@@ -15,6 +15,8 @@ import {
 import { MatButton, MatMiniFabButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { CourseService } from "../services";
+import { map } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
   selector: "courses-card-list",
@@ -37,22 +39,24 @@ import { CourseService } from "../services";
 export class CoursesCardListComponent {
   private dialog = inject(MatDialog);
   private courseService = inject(CourseService);
+  private destroyRef = inject(DestroyRef);
   readonly courses = input<Course[]>([]);
   readonly courseEdited = output<void>();
   readonly courseDeleted = output<Course>();
 
-  editCourse(course: Course): void {
+  editCourse(course: Course) {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.minWidth = "400px";
     dialogConfig.data = course;
 
-    this.dialog
+    return this.dialog
       .open(EditCourseDialogComponent, dialogConfig)
-      .afterClosed()
-      .subscribe((val?: Course) => this.handleDialogClose(val));
+      .afterClosed().pipe(
+        takeUntilDestroyed(this.destroyRef),
+        map((val?: Course) => this.handleDialogClose(val))
+      )
   }
 
   private handleDialogClose(val?: Course) {
