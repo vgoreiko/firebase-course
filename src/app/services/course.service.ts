@@ -14,10 +14,9 @@ import {
   orderBy,
   startAfter,
   getCountFromServer,
+  OrderByDirection,
 } from "@angular/fire/firestore";
 import { combineLatest, concatMap, from, map, Observable } from "rxjs";
-import firebase from "firebase/compat";
-import OrderByDirection = firebase.firestore.OrderByDirection;
 
 export interface IGetCoursesByCategory {
   category: string;
