@@ -1,11 +1,21 @@
+Auth!
+<code>{{ uid | async }}</code>
+@if (showLoginButton | async) {
+    <button (click)="loginAnonymously()">Log in anonymously</button>
+    <button (click)="loginWithGoogle()">Log in with Google</button>
+}
+@if (showLogoutButton | async) {
+    <button (click)="logout()">Log out</button>
+}
 
-<div class="login">
-
-  <h2>Sign In</h2>
-
-  <div id="firebaseui-auth-container" class="auth-container">
-
-  </div>
-
-</div>
-
+<section class="email-login" [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="email">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" placeholder="password" type="password">
+    </mat-form-field>
+    <button (click)="loginWithEmail()">Log in with Email</button>
+</section>
